@@ -9,7 +9,7 @@ WORKDIR /workspace
 
 RUN apt-get update -y && \
     apt-get upgrade -y && \
-    apt install -y --no-install-recommends build-essential supervisor git wget curl libgl1 software-properties-common && \
+    apt install -y --no-install-recommends build-essential supervisor git wget curl libgl1 software-properties-common cuda-toolkit && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt install -y --no-install-recommends python${PYTHON_VERSION}-dev python${PYTHON_VERSION}-venv && \
     apt-get autoremove -y && \
