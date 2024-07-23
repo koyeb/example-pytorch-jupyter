@@ -7,7 +7,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /workspace
 
-RUN apt-get update -y && \
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb && \
+    dpkg -i cuda-keyring_1.1-1_all.deb && \
+    apt-get update -y && \
     apt-get upgrade -y && \
     apt install -y --no-install-recommends build-essential supervisor git wget curl libgl1 software-properties-common cuda-toolkit && \
     add-apt-repository ppa:deadsnakes/ppa && \
@@ -15,6 +17,7 @@ RUN apt-get update -y && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    rm -rf cuda-keyring_1.1-1_all.deb && \
     echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 
 
